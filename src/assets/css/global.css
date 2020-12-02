@@ -1,0 +1,22 @@
+html,body,#app{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background-color: #122030;
+}
+
+.fl{
+    float: left;
+}
+
+.fr{
+    float: right;
+}
+
+.clearf::after{
+    content: '';
+    display: block;
+    clear: both;
+}

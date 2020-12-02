@@ -1,3 +1,5 @@
+// 引入全局的样式文件
+import './assets/css/global.css'
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'

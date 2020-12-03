@@ -45,26 +45,46 @@ export default {
   mounted () {
     this.initMap()
   },
-  updated () {
-  },
   methods: {
     // 地图初始化
     initMap () {
-      var center = new window.TMap.LatLng(39.984120, 116.307484)
+      var center = new window.TMap.LatLng(39.984104, 116.307503)
       var map = new window.TMap.Map(document.getElementById('map'), {
         center: center,
-        zoom: 17.2,
-        mapStyleId: 'style1'
+        zoom: 17,
+        mapStyleId: 'style1',
+        viewMode: '3D',
+        pitch: 35,
+        baseMap: {
+          type: 'vector',
+          features: ['building3d', 'base', 'label']
+        }
       })
-      console.log(map)
-      setTimeout(() => {
-        var a = document.querySelector('canvas+div div')
-        var b = document.querySelector('canvas+div div div')
-        console.log(a)
-        console.log(b)
-        a.removeChild(b)
-        console.log('执行了')
-      }, 3000)
+      var marker = new window.TMap.MultiMarker({
+        id: 'marker-layer',
+        map: map,
+        styles: {
+          marker: new window.TMap.MarkerStyle({
+            width: 25,
+            height: 35,
+            anchor: { x: 16, y: 32 },
+            src: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png'
+          })
+        },
+        geometries: [{
+          id: 'demo',
+          styleId: 'marker',
+          position: new window.TMap.LatLng(39.984104, 116.307503),
+          properties: {
+            title: 'marker'
+          }
+        }]
+      })
+      console.log(marker)
+      var b = document.querySelector('canvas+div:last-child')
+      var a = document.querySelector('canvas+div:last-child')
+      b.style.display = 'none'
+      a.style.display = 'none'
     }
   }
 }
